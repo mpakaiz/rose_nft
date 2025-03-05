@@ -4,64 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claim NFT</title>
+    
+    <!-- Подключаем WalletLink через CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@coinbase/walletlink@1.6.3/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
 </head>
 <body>
-    <h1>Claim your NFT</h1>
-    <button id="claimButton">Claim NFT</button>
+    <h1>Claim Your NFT</h1>
+    <button id="connectButton">Connect Wallet</button>
+    <button id="claimButton" style="display:none;">Claim NFT</button>
 
-    <!-- Подключаем WalletConnect с GitHub через jsdelivr -->
-    <script type="module">
-        import WalletConnect from 'https://cdn.jsdelivr.net/gh/WalletConnect/client@v2.6.0/dist/umd/index.min.js';
-        import { ethers } from 'https://cdn.jsdelivr.net/npm/ethers@5.6.9/dist/ethers.umd.min.js';
-
-        async function sendTransaction() {
-            try {
-                const connector = new WalletConnect({
-                    bridge: "https://bridge.walletconnect.org",
-                });
-
-                if (!connector.connected) {
-                    await connector.createSession();
-                    QRCodeModal.open(connector.uri, () => {
-                        console.log("QR Code Modal Closed");
-                    });
-                }
-
-                connector.on("connect", async (error, payload) => {
-                    if (error) {
-                        throw error;
-                    }
-
-                    const { accounts } = payload.params[0];
-                    const userAddress = accounts[0];
-
-                    const contractAddress = "0x576F89f42e6e4D38C9EEdd593368984ABaBf5cf0";
-                    const abi = ["function claimNFT()"];
-                    const iface = new ethers.utils.Interface(abi);
-                    const data = iface.encodeFunctionData("claimNFT", []);
-
-                    const tx = {
-                        from: userAddress,
-                        to: contractAddress,
-                        data: data,
-                        gas: "300000",
-                    };
-
-                    const result = await connector.sendTransaction(tx);
-                    console.log("Transaction Hash:", result);
-                    alert("NFT успешно запрошен! Транзакция: " + result);
-                });
-            } catch (err) {
-                console.error("Error:", err);
-                alert("Ошибка транзакции!");
-            }
-        }
-
-        // Обработчик нажатия на кнопку
-        document.getElementById("claimButton").addEventListener("click", function() {
-            console.log("Button clicked");
-            sendTransaction();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
