@@ -1,13 +1,13 @@
 // Проверим, доступна ли библиотека WalletConnect
-if (typeof WalletConnect === "undefined") {
+if (typeof WalletConnectClient === "undefined") {
     console.error("WalletConnect is not defined. Please check the CDN link.");
 } else {
     // Создаем экземпляр Web3 для взаимодействия с Ethereum
     let web3;
     let connector;
 
-    // Настройка WalletConnect
-    connector = new WalletConnect({
+    // Настройка WalletConnect (новая версия API)
+    connector = new WalletConnectClient({
         bridge: "https://bridge.walletconnect.org", // Пример серверного URL
     });
 
