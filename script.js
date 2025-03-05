@@ -15,7 +15,7 @@ if (typeof WalletLink === "undefined") {
 
     // Настроим провайдер для подключения через WalletLink
     walletLinkProvider = walletLink.makeWeb3Provider(
-        "https://mainnet.infura.io/v3/YOUR_INFURA_ID", // Используем Infura для подключения
+        "https://mainnet.infura.io/v3/50218e6f9b9d44918b63b1cce590b801", // Используем Infura для подключения
         1 // ID сети (1 - Ethereum Mainnet)
     );
 
