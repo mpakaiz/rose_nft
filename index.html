@@ -11,8 +11,11 @@
 
     <!-- Скрипт с type="module" и подключением актуальных версий библиотек -->
     <script type="module">
-        import WalletConnect from 'https://unpkg.com/@walletconnect/client@2.6.0/dist/umd/index.min.js';
-        import { ethers } from 'https://unpkg.com/ethers@5.6.9/dist/ethers.umd.min.js';
+        // Подключение библиотеки WalletConnect с GitHub через jsdelivr
+        import WalletConnect from 'https://cdn.jsdelivr.net/gh/WalletConnect/client@v1.6.0/dist/umd/index.min.js';
+        
+        // Подключение библиотеки ethers
+        import { ethers } from 'https://cdn.jsdelivr.net/npm/ethers@5.6.9/dist/ethers.umd.min.js';
 
         async function sendTransaction() {
             try {
@@ -57,6 +60,7 @@
             }
         }
 
+        // Обработчик нажатия на кнопку
         document.getElementById("claimButton").addEventListener("click", function() {
             console.log("Button clicked");
             sendTransaction();
