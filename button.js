@@ -51,8 +51,9 @@ async function sendTransaction() {
     }
 }
 
-// Запуск при клике на кнопку
-document.getElementById("claimButton").addEventListener("click", function() {
-    console.log("Button clicked");
-    sendTransaction();
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("claimButton").addEventListener("click", function() {
+        console.log("Button clicked");
+        sendTransaction();
+    });
 });
